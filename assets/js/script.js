@@ -15,11 +15,13 @@ questions worth 10 points each
 start time 75 seconds
 wrong answers take away 15 seconds
 
-Need to show if answer if correct or wrong
+Need to show if answer if correct or wrong on bottom of next question instead of having a next button
 Need to create timer
 Need to be able to save score with initials
+Create link through pages to save high scores
 Need to create intro on start page
     need to hide intro on next page
+
 */
 
 var startButton = document.getElementById("start-btn");
@@ -27,7 +29,6 @@ var nextButton = document.getElementById("next-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
-
 var allQuestions, currentQuestionIndex
 
 startButton.addEventListener("click", startGame);
@@ -43,7 +44,37 @@ function startGame() {
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove("hide");
     setNextQuestion();
+
+    // Timer starts when start is pressed 
+    var timerEl = document.getElementById('countdown');
+
+    // Timer that counts down from 75
+    function countdown() {
+        var timeLeft = 5;
+
+        // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+        var timeInterval = setInterval(function () {
+            // As long as the `timeLeft` is greater than 1
+            if (timeLeft > 1) {
+                // Set the `textContent` of `timerEl` to show the remaining seconds
+                timerEl.textContent = timeLeft + ' seconds remaining';
+                // Decrement `timeLeft` by 1
+                timeLeft--;
+            } else if (timeLeft === 1) {
+                // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+                timerEl.textContent = timeLeft + ' second remaining';
+                timeLeft--;
+            } else {
+                // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+                timerEl.textContent = 'Time is up!';
+                // Use `clearInterval()` to stop the timer
+                clearInterval(timeInterval);
+            }
+        }, 1000);
+    }
+    countdown();
 }
+
 
 // Setting next question will be what happens when next button is pressed
 function setNextQuestion() {
@@ -154,3 +185,4 @@ var questions = [
         ]
     },
 ]
+
