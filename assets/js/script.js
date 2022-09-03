@@ -11,7 +11,7 @@ WHEN the game is over
 THEN I can save my initials and my score
 
 5 questions
-questions worth 10 points each
+questions worth 1 point each
 start time 75 seconds
 wrong answers take away 15 seconds
 
@@ -29,6 +29,7 @@ var nextButton = document.getElementById("next-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
+var introText = document.getElementById("intro");
 var allQuestions, currentQuestionIndex
 
 startButton.addEventListener("click", startGame);
@@ -37,8 +38,11 @@ nextButton.addEventListener("click", () => {
     setNextQuestion()
 })
 
-// Start game
+
+// Start game shows first question (0 in array/index)
 function startGame() {
+    // hides intro and start button
+    introText.classList.add("hide");
     startButton.classList.add("hide");
     allQuestions = questions;
     currentQuestionIndex = 0;
@@ -76,7 +80,7 @@ function startGame() {
 }
 
 
-// Setting next question will be what happens when next button is pressed
+// Setting next question in array (question 2, index 1) will be what happens when next button is pressed
 function setNextQuestion() {
     resetState()
     showQuestion(allQuestions[currentQuestionIndex]);
@@ -96,6 +100,7 @@ function showQuestion(question) {
     })
 }
 
+// Hides next button while questions are displayed
 function resetState() {
     nextButton.classList.add("hide")
     while (answerButtonsElement.firstChild) {
@@ -103,6 +108,7 @@ function resetState() {
             (answerButtonsElement.firstChild)
     }
 }
+
 // Sets what happens when answer is selected
 function selectAnswer(e) {
     var selectedButton = e.target
