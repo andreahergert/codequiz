@@ -1,26 +1,12 @@
-/*GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
+/*
+Get score to display
+    each question worth 1 point
 
-5 questions
-questions worth 1 point each
-start time 75 seconds
-wrong answers take away 15 seconds
+Get timer to take away 15 seconds for wrong answers
 
-Need to show if answer if correct or wrong on bottom of next question instead of having a next button
-Need to create timer
-Need to be able to save score with initials
-Create link through pages to save high scores
-Need to create intro on start page
-    need to hide intro on next page
+Get timer to stop quiz when time runs out
+
+Need text box for users initials when time expires to submit score with a button and save score to local storage
 
 */
 
@@ -30,6 +16,7 @@ var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
 var introText = document.getElementById("intro");
+var scoreText = document.getElementById("score");
 var allQuestions, currentQuestionIndex
 
 startButton.addEventListener("click", startGame);
@@ -41,7 +28,7 @@ nextButton.addEventListener("click", () => {
 
 // Start game shows first question (0 in array/index)
 function startGame() {
-    // hides intro and start button
+    score = 0;
     introText.classList.add("hide");
     startButton.classList.add("hide");
     allQuestions = questions;
@@ -54,7 +41,7 @@ function startGame() {
 
     // Timer that counts down from 75
     function countdown() {
-        var timeLeft = 5;
+        var timeLeft = 75;
 
         // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
         var timeInterval = setInterval(function () {
@@ -100,7 +87,7 @@ function showQuestion(question) {
     })
 }
 
-// Hides next button while questions are displayed
+// Hides next button while questions are display and replace text inside button to answers in questions
 function resetState() {
     nextButton.classList.add("hide")
     while (answerButtonsElement.firstChild) {
@@ -130,7 +117,7 @@ function setStatusClass(element, correct) {
     if (correct) {
         element.classList.add("correct")
     } else {
-        element.classList.add("wrong")
+        element.classList.add("wrong");
     }
 }
 
