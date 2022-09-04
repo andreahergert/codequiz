@@ -18,14 +18,15 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+h1 {
+    text-align: center;
+}
 button:hover {
     cursor: pointer;
 }
 
 .container {
     width: 800px;
-    max-width: 80%;
     background-color: white;
     border-radius: 5px;
     padding: 10px;
@@ -45,11 +46,11 @@ button:hover {
 }
 
 .btn.correct {
-
+background-color: green;
 }
 
 .btn.wrong {
-
+background-color: red;
 }
 
 .start-btn, .next-btn {
