@@ -17,115 +17,10 @@ var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
 var introText = document.getElementById("intro");
 var scorePoint = document.getElementById("score");
+var timerEl = document.getElementById('countdown');
 var allQuestions, currentQuestionIndex
-
-
-startButton.addEventListener("click", startGame);
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++
-    setNextQuestion()
-})
-
-
-// Start game shows first question (0 in array/index)
-function startGame() {
-    introText.classList.add("hide");
-    startButton.classList.add("hide");
-    allQuestions = questions;
-    currentQuestionIndex = 0;
-    questionContainerElement.classList.remove("hide");
-    setNextQuestion();
-
-    // Timer starts when start is pressed 
-    var timerEl = document.getElementById('countdown');
-
-    // Timer that counts down from 75
-    function countdown() {
-        var timeLeft = 75;
-
-        // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-        var timeInterval = setInterval(function () {
-            // As long as the `timeLeft` is greater than 1
-            if (timeLeft > 1) {
-                // Set the `textContent` of `timerEl` to show the remaining seconds
-                timerEl.textContent = timeLeft + ' seconds remaining';
-                // Decrement `timeLeft` by 1
-                timeLeft--;
-            } else if (timeLeft === 1) {
-                // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-                timerEl.textContent = timeLeft + ' second remaining';
-                timeLeft--;
-            } else {
-                // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-                timerEl.textContent = 'Time is up!';
-                // Use `clearInterval()` to stop the timer
-                clearInterval(timeInterval);
-            }
-        }, 1000);
-    }
-    countdown();
-}
-
-
-// Setting next question in array (question 2, index 1) will be what happens when next button is pressed
-function setNextQuestion() {
-    resetState()
-    showQuestion(allQuestions[currentQuestionIndex]);
-}
-
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answer => {
-        var button = document.createElement("button")
-        button.innerText = answer.text
-        button.classList.add("btn")
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
-        button.addEventListener("click", selectAnswer)
-        answerButtonsElement.appendChild(button)
-    })
-}
-
-
-// Hides next button while questions are display and replace text inside button to answers in questions
-function resetState() {
-    nextButton.classList.add("hide")
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild
-            (answerButtonsElement.firstChild)
-    }
-}
-
-// Sets what happens when answer is selected
-function selectAnswer(event) {
-    var selectedButton = event.target
-    var correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (allQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove("hide")
-    } else {
-        startButton.innerText = "Restart"
-        startButton.classList.remove("hide")
-    }
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add("correct");
-    } else {
-        element.classList.add("wrong");
-    }
-}
-
-function clearStatusClass(element) {
-    element.classList.remove("correct")
-    element.classList.remove("wrong")
-}
+var timeLeft = 75
+var total = 0;
 
 var questions = [
     // Question 1
@@ -179,4 +74,111 @@ var questions = [
         ]
     },
 ]
+
+startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
+
+
+// Start game shows first question (0 in array/index)
+function startGame() {
+    introText.classList.add("hide");
+    startButton.classList.add("hide");
+    allQuestions = questions;
+    currentQuestionIndex = 0;
+    questionContainerElement.classList.remove("hide");
+    setNextQuestion();
+
+    // Timer that counts down from 75 starts when start button is pressed
+    function countdown() {
+        // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+        var timeInterval = setInterval(function () {
+            // As long as the `timeLeft` is greater than 1
+            if (timeLeft > 1) {
+                // Set the `textContent` of `timerEl` to show the remaining seconds
+                timerEl.textContent = timeLeft + ' seconds remaining';
+                // Decrement `timeLeft` by 1
+                timeLeft--;
+            } else if (timeLeft === 1) {
+                // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+                timerEl.textContent = timeLeft + ' second remaining';
+                timeLeft--;
+            } else {
+                // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+                timerEl.textContent = 'Time is up!';
+                // Use `clearInterval()` to stop the timer
+                clearInterval(timeInterval);
+            }
+        }, 1000);
+    }
+    countdown();
+}
+
+// Setting next question in array (question 2, index 1) will be what happens when next button is pressed
+function setNextQuestion() {
+    resetState()
+    showQuestion(allQuestions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        var button = document.createElement("button")
+        button.innerText = answer.text
+        button.classList.add("btn")
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
+
+// Hides next button while questions are display and replace text inside button to answers in questions
+function resetState() {
+    nextButton.classList.add("hide")
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+            (answerButtonsElement.firstChild)
+    }
+}
+
+// Sets what happens when answer is selected
+function selectAnswer(event) {
+    var selectedButton = event.target
+    var correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (allQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove("hide")
+    } else {
+        startButton.innerText = "Restart"
+        startButton.classList.remove("hide")
+    }
+    // Takes away time for any answer but need to be if correct answer is false
+    if (selectedButton.value !== questions[currentQuestionIndex].answers) {
+        timeLeft -= 15
+        if (timeLeft < 0) {
+            timeLeft = 0
+        }
+    }
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add("correct");
+    } else {
+        element.classList.add("wrong");
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove("correct")
+    element.classList.remove("wrong")
+}
 
