@@ -16,8 +16,9 @@ var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
 var introText = document.getElementById("intro");
-var scoreText = document.getElementById("score");
+var scorePoint = document.getElementById("score");
 var allQuestions, currentQuestionIndex
+
 
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
@@ -28,7 +29,6 @@ nextButton.addEventListener("click", () => {
 
 // Start game shows first question (0 in array/index)
 function startGame() {
-    score = 0;
     introText.classList.add("hide");
     startButton.classList.add("hide");
     allQuestions = questions;
@@ -80,12 +80,14 @@ function showQuestion(question) {
         button.innerText = answer.text
         button.classList.add("btn")
         if (answer.correct) {
-            button.dataset.correct = answer.correct
+            button.dataset.correct = answer.correct;
+            scorePoint++;
         }
         button.addEventListener("click", selectAnswer)
         answerButtonsElement.appendChild(button)
     })
 }
+
 
 // Hides next button while questions are display and replace text inside button to answers in questions
 function resetState() {
@@ -115,7 +117,8 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-        element.classList.add("correct")
+        element.classList.add("correct");
+
     } else {
         element.classList.add("wrong");
     }
