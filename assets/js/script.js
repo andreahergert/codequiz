@@ -98,8 +98,8 @@ function resetState() {
 }
 
 // Sets what happens when answer is selected
-function selectAnswer(e) {
-    var selectedButton = e.target
+function selectAnswer(event) {
+    var selectedButton = event.target
     var correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
