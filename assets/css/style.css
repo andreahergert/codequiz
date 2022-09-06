@@ -2,11 +2,12 @@
     --gray: #9EA3B0;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
 
 body {
     background-color: var(--gray);
@@ -18,9 +19,19 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 h1 {
     text-align: center;
 }
+
+button {
+    background-color: purple;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
 button:hover {
     cursor: pointer;
 }
@@ -31,40 +42,4 @@ button:hover {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
-}
-
-.btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.btn {
-    background-color: purple;
-    color: white;
-}
-
-.btn.correct {
-background-color: green;
-}
-
-.btn.wrong {
-background-color: red;
-}
-
-.start-btn, .next-btn {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px 20px;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hide {
-    display: none;
 }
