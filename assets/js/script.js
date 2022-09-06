@@ -2,7 +2,7 @@
 Get score to display
     each question worth 1 point
 
-Get timer to take away 15 seconds for wrong answers
+Get timer to take away 15 seconds for wrong answers instead of taking away 15 seconds for all answers
 
 Get timer to stop quiz when time runs out
 
@@ -21,6 +21,12 @@ var timerEl = document.getElementById('countdown');
 var allQuestions, currentQuestionIndex
 var timeLeft = 75
 var total = 0;
+
+startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 var questions = [
     // Question 1
@@ -75,13 +81,6 @@ var questions = [
     },
 ]
 
-startButton.addEventListener("click", startGame);
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++
-    setNextQuestion()
-})
-
-
 // Start game shows first question (0 in array/index)
 function startGame() {
     introText.classList.add("hide");
@@ -90,9 +89,12 @@ function startGame() {
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove("hide");
     setNextQuestion();
+    total = 0;
+    // the score should display at the start as 0
+    scorePoint = total
 
     // Timer that counts down from 75 starts when start button is pressed
-    function countdown() {
+function countdown() {
         // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
         var timeInterval = setInterval(function () {
             // As long as the `timeLeft` is greater than 1
@@ -130,6 +132,8 @@ function showQuestion(question) {
         button.classList.add("btn")
         if (answer.correct) {
             button.dataset.correct = answer.correct;
+            // needs to scorePoint when answer is correct
+            scorePoint = {total}
         }
         button.addEventListener("click", selectAnswer)
         answerButtonsElement.appendChild(button)
@@ -157,7 +161,12 @@ function selectAnswer(event) {
         nextButton.classList.remove("hide")
     } else {
         startButton.innerText = "Restart"
-        startButton.classList.remove("hide")
+        startButton.classList.remove("hide");
+        scorePoint = {total}
+    }
+    if (correct){
+        // needs to score point when answer is correct
+        total++
     }
     // Takes away time for any answer but need to be if correct answer is false
     if (selectedButton.value !== questions[currentQuestionIndex].answers) {
@@ -181,4 +190,3 @@ function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")
 }
-
