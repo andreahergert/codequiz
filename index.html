@@ -8,27 +8,17 @@
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Coding Quiz</title>
 </head>
-
 <body>
   <div class="container">
-    <h4 id="high-scores">View high scores</h4>
-    <h3>Score: <span class="score"></span></h3>
-    
-    <h1 id="countdown">Coding Quiz</h1>
-    <h2 class="intro-hide" id="intro">Test your coding knowledge! Once, you press the start button you'll have 75 seconds to answer the 5 questions. Be careful though, because wrong answers will subtract 15 seconds from your time remaining. Good Luck!</h2>
-    <div class="hide" id="question-container">
-      <div id="question">Question</div>
-      <div class="btn-grid" id="answer-buttons">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-    </div>
-    <div class="controls">
-      <button class="start-btn btn" id="start-btn">Start</button>
-      <button class="next-btn btn hide" id="next-btn">Next</button>
-    </div>
+    <header>
+      <h4 id="scores">View high scores</h4>
+      <h3 id="timer">Time: 0 seconds</h3>
+    </header>
+    <h1 id="title">Coding Quiz</h1>
+    <h2 id="content">Test your coding knowledge! Once, you press the start button you'll have 75
+      seconds to answer the 5 questions. Be careful though, because wrong answers will subtract 15 seconds from your time remaining. Good Luck!</h2>
+    <button id="start">Start</button>
+    <footer id="answer"></footer>
   </div>
   <script src="./assets/js/script.js"></script>
 </body>
