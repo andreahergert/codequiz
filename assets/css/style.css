@@ -1,45 +1,77 @@
 :root {
-    --gray: #9EA3B0;
+    --darkpurple: #3c1361;
 }
 
-*,
-*::before,
-*::after {
+* {
     box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-body {
-    background-color: var(--gray);
-    padding: 0;
-    margin: 0;
+header {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
 }
 
-h1 {
-    text-align: center;
+/* Appearance of buttons in header */
+header > *{
+    border: solid var(--darkpurple) 1px;
+    border-radius: 10px;
+    margin: 10px 5%;
+    font-size: 150%;
+    padding: 10px;
 }
 
 button {
-    background-color: purple;
+    background-color: var(--darkpurple);
     color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px 20px;
+    border: solid black 1px;
+    border-radius: 10px;
+    padding: 10px 40px;
+    font-size: 125%;
+    font-weight: bolder;
 }
 
 button:hover {
     cursor: pointer;
 }
 
-.container {
-    width: 800px;
+#box {
     background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 0 10px 2px;
+    border: solid 1px;
+    border-radius: 20px;
+    margin: 50px 10% 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 2px var(--darkpurple);
+}
+
+#box > * {
+    margin: 20px 5%;
+    align-self: center;
+}
+
+#title {
+    font-size: 200%;
+}
+
+#content {
+    font-size: 125%;
+    text-align: justify;
+}
+
+#button1, #button2, #button3, #button4, #restart, #clearScores {
+    align-self: start;
+
+}
+
+#submit {
+    font-size: 125%;
+    margin: 20px;
+}
+
+footer {
+    text-align: center;
+    font-size: 200%;
 }
