@@ -21,6 +21,7 @@ header > *{
     margin: 10px 5%;
     font-size: 150%;
     padding: 10px;
+    box-shadow: 0 0 10px 2px var(--darkpurple);
 }
 
 button {
