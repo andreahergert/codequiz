@@ -19,24 +19,24 @@ class Question {
 var questionList = [];
 
 // Questions with answers; answers put into arrays
-var choices1 = ["1. strings", "2. boolean", "3. alerts", "4. numbers"];
-var question1 = new Question("Commonly used data types DO NOT include:", choices1, "3. alerts");
+var choices1 = ["strings", "boolean", "alerts", "numbers"];
+var question1 = new Question("Commonly used data types DO NOT include:", choices1, "alerts");
 questionList.push(question1);
 
-var choices2 = ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"];
-var question2 = new Question("The condition in an if/else statement is enclosed within ______.", choices2, "2. curly brackets");
+var choices2 = ["quotes", "curly brackets", "parentheses", "square brackets"];
+var question2 = new Question("The condition in an if/else statement is enclosed within ______.", choices2, "curly brackets");
 questionList.push(question2);
 
-var choices3 = ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"];
-var question3 = new Question("What parameters can be passed into the query selector function?", choices3, "4. all of the above");
+var choices3 = ["numbers and strings", "other arrays", "booleans", "all of the above"];
+var question3 = new Question("What parameters can be passed into the query selector function?", choices3, "all of the above");
 questionList.push(question3);
 
-var choices4 = ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"];
-var question4 = new Question("String values must be enclosed within ______ when being assigned to variables.", choices4, "3. quotes");
+var choices4 = ["commas", "curly brackets", "quotes", "parentheses"];
+var question4 = new Question("String values must be enclosed within ______ when being assigned to variables.", choices4, "quotes");
 questionList.push(question4);
 
-var choices5 = ["1. JavaScript", "2. terminal / bash", "3. for loops", "4. console.log"];
-var question5 = new Question("A very useful tool used during development and debugging for printing content to the debugger is:", choices5, "4. console.log");
+var choices5 = ["JavaScript", "terminal / bash", "for loops", "console.log"];
+var question5 = new Question("A very useful tool used during development and debugging for printing content to the debugger is:", choices5, "console.log");
 questionList.push(question5);
 
 // variables for function for question loop
